@@ -9,6 +9,7 @@ const CONFIG = {
 
 function handoff(){
     if(!CONFIG.serve) app.use(cors());
+    app.use(expressJS.json());
     app.use("/api",api);
     if(CONFIG.serve) app.use(serve);
     else app.use("/",(req,res)=>{
