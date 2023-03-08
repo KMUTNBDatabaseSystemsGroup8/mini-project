@@ -1,20 +1,10 @@
 const expressJS = require('express');
-const router = expressJS.Router();
+const app = expressJS();
 
-// API Route Import
-const getHander = require("./get")
-const deleteHander = require("./delete")
-const newHander = require("./new")
-const updateHander = require("./update")
 
-// API Route Setting
-router.use("/get", getHander);
-router.use("/delete", deleteHander);
-router.use("/new", newHander);
-router.use("/update", updateHander);
+require("./routes/main.routes.js")(app);
 
-// API Default Route
-router.use("/", (req, res) => {
+app.use("/", (req, res) => {
     res.status(403);
     res.json({
         error: true,
@@ -22,4 +12,5 @@ router.use("/", (req, res) => {
     });
 });
 
-module.exports = router;
+
+module.exports = app;
