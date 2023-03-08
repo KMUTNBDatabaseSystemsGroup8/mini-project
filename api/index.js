@@ -2,15 +2,19 @@ const expressJS = require('express');
 const router = expressJS.Router();
 
 // API Route Import
-const test = require("./test");
-const ping = require("./ping");
+const getHander = require("./get")
+const deleteHander = require("./delete")
+const newHander = require("./new")
+const updateHander = require("./update")
 
 // API Route Setting
-router.use("/test",test);
-router.use("/ping",ping);
+router.use("/get", getHander);
+router.use("/delete", deleteHander);
+router.use("/new", newHander);
+router.use("/update", updateHander);
 
 // API Default Route
-router.use("/", (req,res)=>{
+router.use("/", (req, res) => {
     res.status(403);
     res.json({
         error: true,

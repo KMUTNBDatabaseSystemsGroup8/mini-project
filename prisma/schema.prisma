@@ -12,32 +12,33 @@ datasource db {
 
 model Companies {
   id        Int     @id @default(autoincrement())
-  Name      String
-  Location  String?
-  Email     String  @unique
-  MarketCap Int?
-  Website   String? @unique
-  Telephone Int?    @unique
-  have      have[]
+  name      String
+  location  String
+  email     String  @unique
+  marketcap Int?
+  website   String? @unique
+  telephone Int    @unique
+  jobs      Jobs[]
 }
 
 model Jobs {
-  id             Int     @id @default(autoincrement())
-  JobPosition    String?
-  Education      String?
+  id             Int       @id @default(autoincrement())
+  jobPosition    String
+  education      String?
   TOEIC          Float?
   GPAX           Float?
-  Salary         Float?
-  JobRequirement String?
-  AvailableCount Int
-  have           have[]
+  salary         Float?
+  jobrequirement String
+  availablecount Int
+  companies      Companies @relation(fields: [companyID], references: [id])
+  companyID      Int
 }
 
-model have {
-  companies Companies @relation(fields: [CompanyID], references: [id])
-  CompanyID Int
-  jobs      Jobs      @relation(fields: [JobID], references: [id])
-  JobID     Int
+// model have {
+// companies Companies @relation(fields: [CompanyID], references: [id])
+// CompanyID Int
+//   jobs      Jobs      @relation(fields: [JobID], references: [id])
+//   JobID     Int
 
-  @@id([CompanyID, JobID])
-}
+//   @@id([CompanyID, JobID])
+// }
