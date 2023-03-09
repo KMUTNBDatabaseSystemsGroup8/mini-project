@@ -1,7 +1,10 @@
-exports.deleteJob = (req, res) => {
+const { PrismaClient } = require('@prisma/client')
+const db = new PrismaClient()
+
+exports.deleteJob = async (req, res) => {
     res.json({message:"ลบงาน"})
 };
 
-exports.deleteCompany = (req, res) => {
+exports.deleteCompany = async (req, res) => {
     res.json({message:"ลบบริษัท"})
 };

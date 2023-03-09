@@ -1,6 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// ============= Please crate .env file in project's directory and add DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?SCHEMA"
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -33,12 +35,3 @@ model jobs {
   companies       companies @relation(fields: [company_id], references: [id])
   company_id      Int
 }
-
-// model have {
-// companies Companies @relation(fields: [CompanyID], references: [id])
-// CompanyID Int
-//   jobs      Jobs      @relation(fields: [JobID], references: [id])
-//   JobID     Int
-
-//   @@id([CompanyID, JobID])
-// }
