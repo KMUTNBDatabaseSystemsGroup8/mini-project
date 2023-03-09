@@ -10,28 +10,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Companies {
-  id        Int     @id @default(autoincrement())
-  name      String
-  location  String
-  email     String  @unique
-  marketcap Int?
-  website   String? @unique
-  telephone Int    @unique
-  jobs      Jobs[]
+model companies {
+  id            Int @id @default(autoincrement())
+  company_name  String
+  location      String
+  email         String  @unique
+  marketcap     String?
+  website       String?
+  telephone     String
+  jobs          jobs[]
 }
 
-model Jobs {
-  id             Int       @id @default(autoincrement())
-  jobPosition    String
-  education      String?
-  TOEIC          Float?
-  GPAX           Float?
-  salary         Float?
-  jobrequirement String
-  availablecount Int
-  companies      Companies @relation(fields: [companyID], references: [id])
-  companyID      Int
+model jobs {
+  id              Int @id @default(autoincrement())
+  jobposition     String
+  education       String?
+  toeic           Int?
+  gpax            Float?
+  availablecount  Int
+  jobrequirement  String
+  salary          String?
+  companies       companies @relation(fields: [company_id], references: [id])
+  company_id      Int
 }
 
 // model have {
