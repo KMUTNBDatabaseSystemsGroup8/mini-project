@@ -4,9 +4,9 @@ module.exports = app => {
 
     var router = require("express").Router();
 
-    router.delete("/job", del.deleteJob);
+    router.delete("/job/:jobId", del.deleteJobByID);
 
-    router.delete("/company", del.deleteCompany);
+    router.delete("/company/:companyId", del.deleteCompanyByID);
 
     app.use('/delete',router);
 }
