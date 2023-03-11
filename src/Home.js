@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import {useState,useEffect} from "react";
+
+function Home() {
+
+  // เอาไว้ดึงข้อมูลไปใส่
+  const[datas,setdatas] = useState([])
+
+  const fetchData =()=>{
+    axios
+    .get('http://localhost:8008/api/test')
+    .then(resp=>{
+      setdatas(resp.data) 
+      //console.log(resp.data)
+    })
+    .catch(err=>alert(err));
+  }
+  useEffect(()=>{
+    fetchData()
+  },[])
 
 
-
-export default class Home extends Component {
-  render() {
-    const searchBarStyle = {
+  const searchBarStyle = {
       fontFamily: 'LINESeedSansTH_A_Rg',
       backgroundColor: "#3b3b3b",
       color: "white",
       padding: "10px"
-    };
-    const textStyle = {
+  };
+  const textStyle = {
         backgroundColor: "white",
         border: "none",
         borderRadius: "5px",
@@ -21,8 +38,8 @@ export default class Home extends Component {
         width: "100%",
         padding: "10px",
         marginTop: "10px"
-      };
-    const searchBoxStyle = {
+  };
+  const searchBoxStyle = {
       fontFamily: 'LINESeedSansTH_A_Rg',
       backgroundColor: "white",
       border: "none",
@@ -33,7 +50,7 @@ export default class Home extends Component {
       marginTop: "10px",
       marginBottom:"50px",
       width: "100%"
-    };
+  };
     const searchButtonStyle = {
       fontFamily: 'LINESeedSansTH_A_Rg',
       backgroundColor: "transparent",
@@ -44,9 +61,9 @@ export default class Home extends Component {
       padding: "10px",
       width: "70%",
       marginTop: "10px"
-    };
+  };
     
-    const buttonStyle = {
+  const buttonStyle = {
       fontFamily: 'LINESeedSansTH_A_Rg',
         backgroundColor: "#f77100",
         border: "none",
@@ -57,24 +74,24 @@ export default class Home extends Component {
         width: "20%",
         marginTop: "10px",
         marginRight: '10px'
-      };
-      const scrollBoxStyle = {
+  };
+  const scrollBoxStyle = {
         height: "200px",
         overflowY: "scroll",
         padding: "10px"
-      };
-      const bgStyle = {
+  };
+  const bgStyle = {
         fontFamily: 'LINESeedSansTH_A_Rg',
         backgroundColor: '#f7f8fb',
         height: '100vh', // fill the screen vertically
         display: 'flex',
         justifyContent: 'center',
         // alignItems: 'center'
-      };
+  };
       
       
-    return (<div>
-        <div style={searchBarStyle}>
+  return (<div>
+      <div style={searchBarStyle}>
   <div className="container">
     <div className="row">
       <div className="col-md-4">
@@ -89,7 +106,7 @@ export default class Home extends Component {
             <input type="text" placeholder="สถานที่ทำงาน" style={searchBoxStyle} />
           </div>
           <div className="col-md-4">
-            <button type="button" style={searchButtonStyle}>Search</button>
+            <button type="button" style={searchButtonStyle} >Search</button>
           </div>
         </div>
       </div>
@@ -117,7 +134,7 @@ export default class Home extends Component {
                   <button type="button" style={buttonStyle}>เพิ่มงาน</button>
                 </div>
                 <div style={{ backgroundColor: 'white', padding: '10px', height: '100px', overflowY: 'scroll' }}>
-                  KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB KMUTNB
+                  {datas.meow}
                 </div>
               </div>
             </div>
@@ -126,5 +143,5 @@ export default class Home extends Component {
       </div>
       
     )
-  }
 }
+export default Home;
