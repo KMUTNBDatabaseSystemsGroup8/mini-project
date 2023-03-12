@@ -1,0 +1,10 @@
+const expressJS = require('express');
+const router = expressJS.Router();
+
+router.post("/",(req,res)=>{
+    const {job_postings1,job_postings2,job_postings3} = req.body
+    console.log({job_postings1,job_postings2,job_postings3})
+    res.json({job_postings1,job_postings2,job_postings3})
+})
+
+module.exports = router;

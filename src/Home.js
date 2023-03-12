@@ -12,13 +12,65 @@ function Home() {
     .get('http://localhost:8008/api/test')
     .then(resp=>{
       setdatas(resp.data) 
-      //console.log(resp.data)
+      console.log(resp.data)
     })
     .catch(err=>alert(err));
   }
   useEffect(()=>{
     fetchData()
   },[])
+ ///////////////////////// for search buttons //////////////////////////////
+  const [state_for_search,setState] = useState({
+    company:"",
+    job_postings:"",
+    location:"",
+    object:""
+  })
+  const {company,job_postings,location,object} = state_for_search
+
+  //กำหนดค่าstate
+  const inputValue_forsearch=name=>event=>{
+    //console.log(name,"=",event.target.value)
+    setState({...state_for_search,[name]:event.target.value})
+  }
+
+  ///////////////////////// for send //////////////////////////////
+  const [state_for_send,setState_send] = useState({
+    job_postings1:"",
+    job_postings2:"",
+    job_postings3:"",
+  })
+
+  const {job_postings1,job_postings2,job_postings3} = state_for_send
+
+  const inputValue_for_send=name=>event=>{
+    //console.log(name,"=",event.target.value)
+    setState_send({...state_for_send,[name]:event.target.value})
+  }
+
+  //////////////////////////////////////////////////////////
+  const add_company =()=>{
+    console.log("send from add_company()",{company,job_postings,location,object})
+    axios
+    .post('http://localhost:8008/api/add_company',{company,job_postings,location,object})
+    .then(resp=>{
+      setdatas(resp.data) 
+      console.log(resp.data)
+    })
+    .catch(err=>alert(err));
+  }
+
+  ///////////////////////////////////////////////////////////
+  const add_job_postings =()=>{
+    console.log("send from add_job_postings()",{job_postings1,job_postings2,job_postings3})
+    axios
+    .post('http://localhost:8008/api/add_jobposting',{job_postings1,job_postings2,job_postings3})
+    .then(resp=>{
+      setdatas(resp.data) 
+      console.log(resp.data)
+    })
+    .catch(err=>alert(err));
+  }
 
 
   const searchBarStyle = {
@@ -95,15 +147,15 @@ function Home() {
   <div className="container">
     <div className="row">
       <div className="col-md-4">
-        <input type="text" placeholder="ตำแหน่งงาน" style={searchBoxStyle} />
+        <input type="text" onChange={inputValue_forsearch("job_postings")} placeholder="ตำแหน่งงาน" style={searchBoxStyle} />
       </div>
       <div className="col-md-4">
-        <input type="text" placeholder="บริษัท" style={searchBoxStyle} />
+        <input type="text" onChange={inputValue_forsearch("company")} placeholder="บริษัท" style={searchBoxStyle} />
       </div>
       <div className="col-md-4">
         <div className="row">
           <div className="col-md-8">
-            <input type="text" placeholder="สถานที่ทำงาน" style={searchBoxStyle} />
+            <input type="text" onChange={inputValue_forsearch("location")} placeholder="สถานที่ทำงาน" style={searchBoxStyle} />
           </div>
           <div className="col-md-4">
             <button type="button" style={searchButtonStyle} >Search</button>
@@ -119,19 +171,19 @@ function Home() {
             <div className="row">
               <div className="col-md-4 col-md-push-8">
                 <div style={{ marginBottom: '10px' }}>
-                  <input type="text" placeholder="ตำแหน่งงาน" style={textStyle} />
+                  <input type="text" onChange={inputValue_for_send("job_postings1")} placeholder="ตำแหน่งงาน1" style={textStyle} />
                 </div>
                 <div style={{ marginBottom: '10px' }}>
-                  <input type="text" placeholder="ตำแหน่งงาน" style={textStyle} />
+                  <input type="text" onChange={inputValue_for_send("job_postings2")} placeholder="ตำแหน่งงาน2" style={textStyle} />
                 </div>
                 <div style={{ marginBottom: '10px' }}>
-                  <input type="text" placeholder="ตำแหน่งงาน" style={textStyle} />
+                  <input type="text" onChange={inputValue_for_send("job_postings3")} placeholder="ตำแหน่งงาน3" style={textStyle} />
                 </div>
               </div>
               <div className="col-md-8 col-md-pull-4">
                 <div style={{ display: 'flex', marginBottom: '10px' }}>
-                  <button type="button" style={buttonStyle}>เพิ่มบริษัท</button>
-                  <button type="button" style={buttonStyle}>เพิ่มงาน</button>
+                  <button type="button" onClick={add_company} style={buttonStyle}>เพิ่มบริษัท</button>
+                  <button type="button" onClick={add_job_postings} style={buttonStyle}>เพิ่มงาน</button>
                 </div>
                 <div style={{ backgroundColor: 'white', padding: '10px', height: '100px', overflowY: 'scroll' }}>
                   {datas.meow}
