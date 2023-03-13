@@ -1,5 +1,6 @@
 module.exports = app => {
-    const get = require("../controllers/get.js");
+    require('dotenv').config();
+    const get = require(`../controllers/${process.env.CONTROLLER}/get.js`);
     
     var router = require("express").Router();
 

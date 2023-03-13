@@ -1,7 +1,7 @@
 module.exports = app => {
-
-    const update = require("../controllers/update.js");
-
+    require('dotenv').config();
+    const update = require(`../controllers/${process.env.CONTROLLER}/update.js`);
+    
     var router = require("express").Router();
 
     router.put("/job", update.updateJob);

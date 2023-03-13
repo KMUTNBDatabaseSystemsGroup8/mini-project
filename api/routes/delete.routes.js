@@ -1,6 +1,6 @@
 module.exports = app => {
-
-    const del = require("../controllers/delete.js");
+    require('dotenv').config();
+    const del = require(`../controllers/${process.env.CONTROLLER}/delete.js`);
 
     var router = require("express").Router();
 

@@ -1,6 +1,6 @@
 module.exports = app => {
-    
-    const create = require("../controllers/create.js");
+    require('dotenv').config();
+    const create = require(`../controllers/${process.env.CONTROLLER}/create.js`);
 
     var router = require("express").Router();
 

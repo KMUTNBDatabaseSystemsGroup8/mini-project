@@ -10,7 +10,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   // provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = env("POSGRES_URL")
 }
 
 // model to postgresql
@@ -40,25 +40,25 @@ model jobs {
 
 // model to mongodb
 // model companies {
-//   id           String     @id @default(auto()) @map("_id") @db.ObjectId
-//   company_name String
-//   location     String
-//   email        String  @unique
-//   marketcap    String?
-//   website      String?
-//   telephone    String
-//   jobs         jobs[]
+//   id_           String  @id @default(auto()) @map("_id") @db.ObjectId
+//   id            Int     @map("id")
+//   company_name  String
+//   location      String
+//   email         String
+//   marketcap     String?
+//   website       String?
+//   telephone     String  
 // }
 
 // model jobs {
-//   id             String       @id @default(auto()) @map("_id") @db.ObjectId
-//   jobposition    String
-//   education      String?
-//   toeic          Int?
-//   gpax           Float?
-//   availablecount Int
-//   jobrequirement String
-//   salary         String?
-//   companies      companies @relation(fields: [company_id], references: [id])
-//   company_id     String @db.ObjectId
+//   id_             String  @id @default(auto()) @map("_id") @db.ObjectId
+//   id              Int     @map("id")
+//   jobposition     String
+//   education       String
+//   toeic           Int?
+//   gpax            Float?
+//   availablecount  Int
+//   jobrequirement  String
+//   salary          String?
+//   company_id      Int
 // }
