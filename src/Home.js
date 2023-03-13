@@ -97,6 +97,7 @@ function Home() {
       border: "none",
       borderRadius: "5px",
       color: "#3b3b3b",
+      height: "50px",
       fontSize: "20px",
       marginRight: "10px",
       marginTop: "10px",
