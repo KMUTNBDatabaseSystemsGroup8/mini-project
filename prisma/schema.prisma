@@ -8,17 +8,42 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  // provider = "mongodb"
-  url      = env("POSGRES_URL")
+  // provider = "postgresql"
+  provider = "mongodb"
+  url      = env("MONGO_URL")
 }
 
 // model to postgresql
+// model companies {
+//   id            Int @id @default(autoincrement())
+//   company_name  String
+//   location      String
+//   email         String  @unique
+//   marketcap     String?
+//   website       String?
+//   telephone     String
+//   jobs          jobs[]
+// }
+
+// model jobs {
+//   id              Int @id @default(autoincrement())
+//   jobposition     String
+//   education       String?
+//   toeic           Int?
+//   gpax            Float?
+//   availablecount  Int
+//   jobrequirement  String
+//   salary          String?
+//   companies       companies @relation(fields: [company_id], references: [id])
+//   company_id      Int
+// }
+
+// model to mongodb
 model companies {
-  id            Int @id @default(autoincrement())
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
   company_name  String
   location      String
-  email         String  @unique
+  email         String
   marketcap     String?
   website       String?
   telephone     String
@@ -26,39 +51,14 @@ model companies {
 }
 
 model jobs {
-  id              Int @id @default(autoincrement())
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
   jobposition     String
-  education       String?
+  education       String
   toeic           Int?
   gpax            Float?
   availablecount  Int
   jobrequirement  String
   salary          String?
-  companies       companies @relation(fields: [company_id], references: [id])
-  company_id      Int
+  company         companies?   @relation(fields: [company_id], references: [id])
+  company_id      String? @db.ObjectId
 }
-
-// model to mongodb
-// model companies {
-//   id_           String  @id @default(auto()) @map("_id") @db.ObjectId
-//   id            Int     @map("id")
-//   company_name  String
-//   location      String
-//   email         String
-//   marketcap     String?
-//   website       String?
-//   telephone     String  
-// }
-
-// model jobs {
-//   id_             String  @id @default(auto()) @map("_id") @db.ObjectId
-//   id              Int     @map("id")
-//   jobposition     String
-//   education       String
-//   toeic           Int?
-//   gpax            Float?
-//   availablecount  Int
-//   jobrequirement  String
-//   salary          String?
-//   company_id      Int
-// }
