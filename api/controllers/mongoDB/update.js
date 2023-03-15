@@ -21,7 +21,7 @@ exports.updateJob = async (req, res) => {
     } catch(error) {
         res.status(444);
         res.json({
-            error: "Bad Request",
+            error: "Data not found",
             message: error
         });
     }
@@ -45,7 +45,7 @@ exports.updateCompany = async (req, res) => {
     } catch(error) {
         res.status(444);
         res.json({
-            error: "Bad Request",
+            error: "Data not found",
             message: error
         });
     }
