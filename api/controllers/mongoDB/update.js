@@ -5,7 +5,7 @@ exports.updateJob = async (req, res) => {
     try{
         const job_id = req.body.id;
         const job = await db.jobs.update({
-             where: { id: parseInt(job_id) },
+             where: { id: job_id },
              data: {
                 jobposition : req.body.jobposition,
 			    education : req.body.education,
@@ -21,8 +21,8 @@ exports.updateJob = async (req, res) => {
     } catch(error) {
         res.status(444);
         res.json({
-            error: true,
-            message: "Bad Request"
+            error: "Bad Request",
+            message: error
         });
     }
 };
@@ -31,7 +31,7 @@ exports.updateCompany = async (req, res) => {
     try{
         const company_id = req.body.id;
         const company = await db.companies.update({
-             where: { id: parseInt(company_id) },
+             where: { id: company_id },
              data: {
                 company_name : req.body.company_name,
 			    location : req.body.location,
@@ -45,8 +45,8 @@ exports.updateCompany = async (req, res) => {
     } catch(error) {
         res.status(444);
         res.json({
-            error: true,
-            message: "Bad Request"
+            error: "Bad Request",
+            message: error
         });
     }
 };

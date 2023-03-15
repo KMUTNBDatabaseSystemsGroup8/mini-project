@@ -21,7 +21,7 @@ exports.createJob = async (req, res) => {
         const job = await db.jobs.create({
              data: req.body,
             })
-        const company = await db.companies.findUniqueOrThrow({ where: { id: parseInt(job.company_id) } })
+        const company = await db.companies.findUniqueOrThrow({ where: { id: job.company_id } })
         res.json(job)
     } catch(error) {
         res.status(400);
