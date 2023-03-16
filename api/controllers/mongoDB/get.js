@@ -16,7 +16,7 @@ exports.companyList = async (req, res) => {
 
 exports.jobList = async (req, res) => {
     try {
-        const jobs = await db.jobs.findMany({ select: { id: true, jobposition: true } })
+        const jobs = await db.jobs.findMany({ select: { id: true, jobposition: true , company: {select: {id: true, company_name: true}}} })
         res.json(jobs)
     } catch (error) {
         res.status(400);
@@ -44,7 +44,7 @@ exports.getCompanyByID = async (req, res) => {
 exports.getJobByID = async (req, res) => {
     try {
         const job_id = req.params.jobId;
-        const job = await db.jobs.findUniqueOrThrow({ where: {id: job_id}})
+        const job = await db.jobs.findUniqueOrThrow({ where: {id: job_id}, include: {company: true}})
         res.json(job)
     } catch (error) {
         res.status(444);
@@ -58,7 +58,7 @@ exports.getJobByID = async (req, res) => {
 exports.searchByPosition = async (req, res) => {
     try {
         const job_positions = req.params.position;
-        const job = await db.jobs.findMany({ where: { jobposition: { contains: job_positions, mode: "insensitive" } }, select: { id: true, jobposition : true } })
+        const job = await db.jobs.findMany({ where: { jobposition: { contains: job_positions, mode: "insensitive" } } , include: {company: true}})
         res.json(job)
     } catch (error) {
         res.status(444);
@@ -72,7 +72,7 @@ exports.searchByPosition = async (req, res) => {
 exports.searchByEducation = async (req, res) => {
     try {
         const educations = req.params.education;
-        const job = await db.jobs.findMany({ where: { education: { contains: educations, mode: "insensitive" } } })
+        const job = await db.jobs.findMany({ where: { education: { contains: educations, mode: "insensitive" } } , include: {company: true}})
         res.json(job)
     } catch (error) {
         res.status(444);
