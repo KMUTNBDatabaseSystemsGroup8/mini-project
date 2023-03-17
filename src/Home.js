@@ -171,14 +171,8 @@ function Home() {
           <div className="container">
             <div className="row">
               <div className="col-md-4 col-md-push-8">
-                <div style={{ marginBottom: '10px' }}>
-                  <input type="text" onChange={inputValue_for_send("job_postings1")} placeholder="ตำแหน่งงาน1" style={textStyle} />
-                </div>
-                <div style={{ marginBottom: '10px' }}>
-                  <input type="text" onChange={inputValue_for_send("job_postings2")} placeholder="ตำแหน่งงาน2" style={textStyle} />
-                </div>
-                <div style={{ marginBottom: '10px' }}>
-                  <input type="text" onChange={inputValue_for_send("job_postings3")} placeholder="ตำแหน่งงาน3" style={textStyle} />
+                <div style={{ backgroundColor: 'white', padding: '10px', height: 'auto',marginTop: '60px' }}>
+                  {datas.id}
                 </div>
               </div>
               <div className="col-md-8 col-md-pull-4">
