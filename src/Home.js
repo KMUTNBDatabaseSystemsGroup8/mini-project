@@ -4,12 +4,12 @@ import {useState,useEffect} from "react";
 
 function Home() {
 
-  // เอาไว้ดึงข้อมูลไปใส่
+  // เอาไว้ดึงรับสมัคงานไปใส่
   const[datas,setdatas] = useState([])
 
   const fetchData =()=>{
     axios
-    .get('http://localhost:8008/api/test')
+    .get('http://localhost:8008/api/get/jobs')
     .then(resp=>{
       setdatas(resp.data) 
       console.log(resp.data)
@@ -170,14 +170,12 @@ function Home() {
           <div className="container">
             <div className="row">
               <div className="col-md-4 col-md-push-8">
-                <div style={{ marginBottom: '10px' }}>
-                  <input type="text" onChange={inputValue_for_send("job_postings1")} placeholder="ตำแหน่งงาน1" style={textStyle} />
-                </div>
-                <div style={{ marginBottom: '10px' }}>
-                  <input type="text" onChange={inputValue_for_send("job_postings2")} placeholder="ตำแหน่งงาน2" style={textStyle} />
-                </div>
-                <div style={{ marginBottom: '10px' }}>
-                  <input type="text" onChange={inputValue_for_send("job_postings3")} placeholder="ตำแหน่งงาน3" style={textStyle} />
+                <div className='box'>
+                  {datas.map((data,index)=>(
+                      <div className='row_name' key={index}>
+                        <p>{data.jobposition}</p>
+                      </div>
+                  ))}
                 </div>
               </div>
               <div className="col-md-8 col-md-pull-4">
@@ -186,7 +184,7 @@ function Home() {
                   <button type="button" onClick={add_job_postings} style={buttonStyle}>เพิ่มงาน</button>
                 </div>
                 <div style={{ backgroundColor: 'white', padding: '10px', height: '100px', overflowY: 'scroll' }}>
-                  {datas.meow}
+                  zzzzzz
                 </div>
               </div>
             </div>
