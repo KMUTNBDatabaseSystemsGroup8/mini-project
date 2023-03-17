@@ -16,5 +16,7 @@ module.exports = app => {
 
     router.get("/jobs/education/:education", get.searchByEducation);
 
+    router.get("/search/jobs", get.search);
+
     app.use('/get',router);
 }

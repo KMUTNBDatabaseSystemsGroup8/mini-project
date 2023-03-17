@@ -82,3 +82,19 @@ exports.searchByEducation = async (req, res) => {
         });
     }
 };
+
+exports.search = async (req, res) => {
+    try {
+        var job_position_param = req.query.position;
+        var company_name_param = req.query.company;
+        var location_param = req.query.location;
+        const job = await db.jobs.findMany({ where: { jobposition: { contains: job_position_param, mode: "insensitive" }, company: { company_name: { contains: company_name_param, mode: "insensitive" }, location: { contains: location_param, mode: "insensitive" }} } , include: {company: true}})
+        res.json(job)
+    } catch (error) {
+        res.status(444);
+        res.json({
+            error: "Data not found",
+            message: error
+        });
+    }
+};
