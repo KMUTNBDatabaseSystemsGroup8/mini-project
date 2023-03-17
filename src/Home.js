@@ -6,7 +6,6 @@ function Home() {
 
   // เอาไว้ดึงข้อมูลไปใส่
   const[jobs,setjobs] = useState([])
-  const[companys,setcompanys] = useState([])
 
   const fetchData_jobs =()=>{
     axios
@@ -17,19 +16,8 @@ function Home() {
     })
     .catch(err=>alert(err));
   }
-
-  const fetchData_company =()=>{
-    axios
-    .get('http://localhost:8008/api/get/companies')
-    .then(resp=>{
-      setcompanys(resp.data) 
-      console.log(resp.data)
-    })
-    .catch(err=>alert(err));
-  }
   useEffect(()=>{
     fetchData_jobs()
-    fetchData_company()
   },[])
 
  ///////////////////////// for search buttons //////////////////////////////
@@ -150,6 +138,13 @@ function Home() {
                     {jobs.map((data,index)=>(
                       <div className='row_jobsposition' key={index}>
                         <p>{data.jobposition}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className='company'>
+                    {jobs.map((data,index)=>(
+                      <div className='row_company' key={index}>
+                        <p>{data.company.company_name}</p>
                       </div>
                     ))}
                   </div>
