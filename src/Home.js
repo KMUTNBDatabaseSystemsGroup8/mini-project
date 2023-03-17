@@ -4,7 +4,7 @@ import {useState,useEffect} from "react";
 
 function Home() {
 
-  // เอาไว้ดึงรับสมัคงานไปใส่
+  // เอาไว้ดึงข้อมูลไปใส่
   const[datas,setdatas] = useState([])
 
   const fetchData =()=>{
@@ -171,15 +171,13 @@ function Home() {
           <div className="container">
             <div className="row">
               <div className="col-md-4 col-md-push-8">
-                <div className='box'>
-                  {datas.map((data,index)=>(
-                      <div className='row_name' key={index}>
-                        <p>{data.jobposition}</p>
-                      </div>
-                  ))}
                 <div style={{ backgroundColor: 'white', padding: '10px', height: 'auto',marginTop: '60px' }}>
-                  {datas.id}
-
+                  {datas.map((data,index)=>(
+                    <div className='row_name' key={index}>
+                      <p>{data.jobposition}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="col-md-8 col-md-pull-4">
                 <div style={{ display: 'flex', marginBottom: '10px' }}>
@@ -187,7 +185,7 @@ function Home() {
                   <button type="button" onClick={add_job_postings} style={buttonStyle}>เพิ่มงาน</button>
                 </div>
                 <div style={{ backgroundColor: 'white', padding: '10px', height: '100px', overflowY: 'scroll' }}>
-                  zzzzzz
+                  {datas.meow}
                 </div>
               </div>
             </div>
