@@ -5,20 +5,33 @@ import {useState,useEffect} from "react";
 function Home() {
 
   // เอาไว้ดึงข้อมูลไปใส่
-  const[datas,setdatas] = useState([])
+  const[jobs,setjobs] = useState([])
+  const[companys,setcompanys] = useState([])
 
-  const fetchData =()=>{
+  const fetchData_jobs =()=>{
     axios
     .get('http://localhost:8008/api/get/jobs')
     .then(resp=>{
-      setdatas(resp.data) 
+      setjobs(resp.data) 
+      console.log(resp.data)
+    })
+    .catch(err=>alert(err));
+  }
+
+  const fetchData_company =()=>{
+    axios
+    .get('http://localhost:8008/api/get/companies')
+    .then(resp=>{
+      setcompanys(resp.data) 
       console.log(resp.data)
     })
     .catch(err=>alert(err));
   }
   useEffect(()=>{
-    fetchData()
+    fetchData_jobs()
+    fetchData_company()
   },[])
+
  ///////////////////////// for search buttons //////////////////////////////
   const [state_for_search,setState] = useState({
     company:"",
@@ -33,45 +46,6 @@ function Home() {
     //console.log(name,"=",event.target.value)
     setState({...state_for_search,[name]:event.target.value})
   }
-
-  ///////////////////////// for send //////////////////////////////
-  const [state_for_send,setState_send] = useState({
-    job_postings1:"",
-    job_postings2:"",
-    job_postings3:"",
-  })
-
-  const {job_postings1,job_postings2,job_postings3} = state_for_send
-
-  const inputValue_for_send=name=>event=>{
-    //console.log(name,"=",event.target.value)
-    setState_send({...state_for_send,[name]:event.target.value})
-  }
-
-  //////////////////////////////////////////////////////////
-  const add_company =()=>{
-    console.log("send from add_company()",{company,job_postings,location,object})
-    axios
-    .post('http://localhost:8008/api/add_company',{company,job_postings,location,object})
-    .then(resp=>{
-      setdatas(resp.data) 
-      console.log(resp.data)
-    })
-    .catch(err=>alert(err));
-  }
-
-  ///////////////////////////////////////////////////////////
-  const add_job_postings =()=>{
-    console.log("send from add_job_postings()",{job_postings1,job_postings2,job_postings3})
-    axios
-    .post('http://localhost:8008/api/add_jobposting',{job_postings1,job_postings2,job_postings3})
-    .then(resp=>{
-      setdatas(resp.data) 
-      console.log(resp.data)
-    })
-    .catch(err=>alert(err));
-  }
-
 
   const searchBarStyle = {
       fontFamily: 'LINESeedSansTH_A_Rg',
@@ -172,20 +146,22 @@ function Home() {
             <div className="row">
               <div className="col-md-4 col-md-push-8">
                 <div style={{ backgroundColor: 'white', padding: '10px', height: 'auto',marginTop: '60px' }}>
-                  {datas.map((data,index)=>(
-                    <div className='row_name' key={index}>
-                      <p>{data.jobposition}</p>
-                    </div>
-                  ))}
+                  <div className='job'>
+                    {jobs.map((data,index)=>(
+                      <div className='row_jobsposition' key={index}>
+                        <p>{data.jobposition}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
               <div className="col-md-8 col-md-pull-4">
                 <div style={{ display: 'flex', marginBottom: '10px' }}>
-                  <button type="button" onClick={add_company} style={buttonStyle}>เพิ่มบริษัท</button>
-                  <button type="button" onClick={add_job_postings} style={buttonStyle}>เพิ่มงาน</button>
+                  <button type="button" style={buttonStyle}>เพิ่มบริษัท</button>
+                  <button type="button" style={buttonStyle}>เพิ่มงาน</button>
                 </div>
                 <div style={{ backgroundColor: 'white', padding: '10px', height: '100px', overflowY: 'scroll' }}>
-                  {datas.meow}
+                  zzzz
                 </div>
               </div>
             </div>
