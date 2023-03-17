@@ -97,6 +97,7 @@ function Home() {
       border: "none",
       borderRadius: "5px",
       color: "#3b3b3b",
+      height: "55px",
       fontSize: "20px",
       marginRight: "10px",
       marginTop: "10px",
@@ -176,7 +177,9 @@ function Home() {
                         <p>{data.jobposition}</p>
                       </div>
                   ))}
-                </div>
+                <div style={{ backgroundColor: 'white', padding: '10px', height: 'auto',marginTop: '60px' }}>
+                  {datas.id}
+
               </div>
               <div className="col-md-8 col-md-pull-4">
                 <div style={{ display: 'flex', marginBottom: '10px' }}>
