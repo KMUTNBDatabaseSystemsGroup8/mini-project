@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
-import {useState,useEffect} from "react";
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 
-const PopupAddComp = (props) => {
-
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = props.handleShow;
+const PopupAddComp = ({show,handleClose}) => {
+  console.log(show)
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show === 'addComp'} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>เพิ่มบริษัท</Modal.Title>
         </Modal.Header>

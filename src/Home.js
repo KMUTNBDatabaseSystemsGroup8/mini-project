@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios, { all } from 'axios';
 import {useState,useEffect} from "react";
 import PopupAddComp from './Popup_addComp';
+import PopupAddJob from './Popup_addJob';
 
 function Home() {
 
@@ -142,8 +143,8 @@ function Home() {
   };
 
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = (popup) => setShow(popup);
+  const handleShow = (popup) => setShow(popup);
       
       
   return (<div>
@@ -195,9 +196,10 @@ function Home() {
               </div>
           </div>
           <div className="col-md-8 col-md-pull-4">
-            <button type="button" style={buttonStyle} onClick={handleShow}>เพิ่มบริษัท</button>
-            <PopupAddComp handleShow={handleShow}/>
-            <button type="button" style={buttonStyle}>เพิ่มงาน</button>
+            <button type="button" style={buttonStyle} onClick={() => handleShow('addComp')}>เพิ่มบริษัท</button>
+            <PopupAddComp show={show} handleClose={handleClose}/>
+            <button type="button" style={buttonStyle} onClick={() => handleShow('addJob')}>เพิ่มงาน</button>
+            <PopupAddJob show={show} handleClose={handleClose}/>
             <button type="button" onClick={deleteJob} style={buttonStyle}>ลบงาน</button>
 
             <div  style={{ display: 'flex', marginBottom: '10px' ,marginRight: '10px',}}>

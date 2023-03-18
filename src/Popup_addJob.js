@@ -1,19 +1,15 @@
-import React, { Component } from 'react';
-import {useState,useEffect} from "react";
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 
-const Popup_addJob = () => {
-
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+const PopupAddJob = ({show,handleClose}) => {
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show === 'addJob'} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>เพิ่มบริษัท</Modal.Title>
+          <Modal.Title>เพิ่มงาน</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -42,3 +38,4 @@ const Popup_addJob = () => {
       </Modal>
     );
   };
+  export default PopupAddJob
