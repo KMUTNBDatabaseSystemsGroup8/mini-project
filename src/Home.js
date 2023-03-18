@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios, { all } from 'axios';
 import {useState,useEffect} from "react";
+import PopupAddComp from './Popup_addComp';
 
 function Home() {
 
@@ -139,6 +140,10 @@ function Home() {
     overflowY: 'scroll',
     height: '65vh',
   };
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
       
       
   return (<div>
@@ -190,9 +195,11 @@ function Home() {
               </div>
           </div>
           <div className="col-md-8 col-md-pull-4">
-            <button type="button" style={buttonStyle}>เพิ่มบริษัท</button>
-              <button type="button" style={buttonStyle}>เพิ่มงาน</button>
-              <button type="button" onClick={deleteJob} style={buttonStyle}>ลบงาน</button>
+            <button type="button" style={buttonStyle} onClick={handleShow}>เพิ่มบริษัท</button>
+            <PopupAddComp handleShow={handleShow}/>
+            <button type="button" style={buttonStyle}>เพิ่มงาน</button>
+            <button type="button" onClick={deleteJob} style={buttonStyle}>ลบงาน</button>
+
             <div  style={{ display: 'flex', marginBottom: '10px' ,marginRight: '10px',}}>
               
             </div>
