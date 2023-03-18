@@ -4,7 +4,7 @@ import {useState,useEffect} from "react";
 
 function Home() {
 
-  // เอาไว้ดึงข้อมูลไปใส่
+  //////////////////////// เอาไว้ดึงข้อมูลไปใส่ช่องทางซ้าย ////////////////////////
   const[jobs,setjobs] = useState([])
 
   const fetchData_jobs =()=>{
@@ -12,7 +12,7 @@ function Home() {
     .get('http://localhost:8008/api/get/jobs')
     .then(resp=>{
       setjobs(resp.data) 
-      console.log(resp.data)
+      //console.log(resp.data)
     })
     .catch(err=>alert(err));
   }
@@ -25,16 +25,32 @@ function Home() {
     company:"",
     job_postings:"",
     location:"",
-    object:""
   })
-  const {company,job_postings,location,object} = state_for_search
+  const {company,job_postings,location} = state_for_search
 
   //กำหนดค่าstate
   const inputValue_forsearch=name=>event=>{
     //console.log(name,"=",event.target.value)
     setState({...state_for_search,[name]:event.target.value})
   }
+  //-------------------------------------------------------------------------
 
+  //////////////////////////// search api ////////////////////////////////////
+  const[alldata_search,setalldata_search] = useState([])
+
+  const getdata_from_search =()=>{
+    axios
+    .get(`http://localhost:8008/api/get/search/jobs?position=${state_for_search.job_postings}&company=${state_for_search.company}&location=${state_for_search.location}`)
+    .then(resp=>{
+      setalldata_search(resp.data)
+      console.log(resp.data)
+      //console.log(resp.data[0].company.company_name)
+      //console.log(resp.data[0].jobposition)
+      //console.log(resp.data[0].company.location)
+    })
+    .catch(err=>alert(err));
+  }
+  //--------------------------------------------------------------------------
   const searchBarStyle = {
       fontFamily: 'LINESeedSansTH_A_Rg',
       backgroundColor: "#3b3b3b",
@@ -121,7 +137,7 @@ function Home() {
             <input type="text" onChange={inputValue_forsearch("location")} placeholder="สถานที่ทำงาน" style={searchBoxStyle} />
           </div>
           <div className="col-md-4">
-            <button type="button" style={searchButtonStyle} >Search</button>
+            <button type="button" onClick={getdata_from_search} style={searchButtonStyle} >Search</button>
           </div>
         </div>
       </div>
@@ -156,7 +172,14 @@ function Home() {
                   <button type="button" style={buttonStyle}>เพิ่มงาน</button>
                 </div>
                 <div style={{ backgroundColor: 'white', padding: '10px', height: '100px', overflowY: 'scroll' }}>
-                  zzzz
+                  {alldata_search.map((data,index)=>(
+                    <div className='test_searchDATA' key={index}>
+                      <p>{data.jobposition}</p>
+                      <p>{data.company.company_name}</p>
+                      <p>{data.company.location}</p>
+                      <p>-------------</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
