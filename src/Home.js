@@ -117,6 +117,7 @@ function Home() {
         justifyContent: 'center',
         // alignItems: 'center'
   };
+  
       
       
   return (<div>
@@ -150,8 +151,8 @@ function Home() {
                 <div style={{padding: '10px', height: 'auto',marginTop: '60px' }}>
                   <div className='jobs row'>
                     {jobs.map((data,index)=>(
-                        <button onClick={()=>getdata_from_search(data.jobposition,data.company.company_name,"")}>
-                        <div key={index} className="col-md-12 mb-4 bg-white" style={{border: '1px solid #ccc', borderRadius: '10px', padding: '10px', marginBottom: '20px'}}>
+                        <button onClick={() => getdata_from_search(data.jobposition, data.company.company_name, "")} style={{ background: 'white',border: '1px solid #ccc', borderRadius: '10px', padding: '10px', marginBottom: '20px' }}>
+                        <div key={index} className="col-md-12 mb-4 bg-white" >
                           <p>
                             <strong style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{data.jobposition}</strong>
                           </p>
