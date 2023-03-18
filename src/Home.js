@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import {useState,useEffect} from "react";
 
 function Home() {
 
   //////////////////////// เอาไว้ดึงข้อมูลไปใส่ช่องทางซ้าย ////////////////////////
   const[jobs,setjobs] = useState([])
-
+  var selectedJobID = -1;
   const fetchData_jobs =(position,company,location)=>{
     axios
     .get(`http://localhost:8008/api/get/search/jobs?position=${position}&company=${company}&location=${location}`)
@@ -16,9 +16,25 @@ function Home() {
     })
     .catch(err=>alert(err));
   }
+  
   useEffect(()=>{
-    fetchData_jobs(state_for_search.job_postings,state_for_search.company,state_for_search.location)
+    fetchData_jobs(state_for_search.job_postings,state_for_search.company,state_for_search.location);
   },[])
+
+  //////////////////////// เอาไว้ลบข้อมูล ////////////////////////
+
+  const deleteJob =()=>{
+
+    
+    axios
+    .delete(`http://localhost:8008/api/delete/job/${alldata_search.id}`)
+    .then(resp=>{
+      fetchData_jobs(state_for_search.job_postings,state_for_search.company,state_for_search.location);
+      setalldata_search([]);
+    })
+    .catch(err=>alert(err));
+    
+  }
 
  ///////////////////////// for search buttons //////////////////////////////
   const [state_for_search,setState] = useState({
@@ -37,14 +53,15 @@ function Home() {
 
   //////////////////////////// search api ////////////////////////////////////
   const[alldata_search,setalldata_search] = useState([])
+ 
 
-  const getdata_from_search =(position,company,location)=>{
+  const getdata_from_search =(id)=>{
     //console.log(position,company,location)
     axios
-    .get(`http://localhost:8008/api/get/search/jobs?position=${position}&company=${company}&location=${location}`)
+    .get(`http://localhost:8008/api/get/job/${id}`)
     .then(resp=>{
-      setalldata_search(resp.data)
-      //console.log(resp.data)
+      console.log(resp.data);
+      setalldata_search(resp.data);
     })
     .catch(err=>alert(err));
   }
@@ -77,6 +94,7 @@ function Home() {
       fontSize: "20px",
       marginRight: "10px",
       marginTop: "10px",
+      padding: "10px",
       marginBottom:"50px",
       width: "100%"
   };
@@ -88,7 +106,6 @@ function Home() {
       color: "white",
       fontSize: "20px",
       padding: "10px",
-      width: "70%",
       marginTop: "10px"
   };
     
@@ -100,9 +117,10 @@ function Home() {
         color: "white",
         fontSize: "20px",
         padding: "10px",
-        width: "20%",
+        width: "150px",
         marginTop: "10px",
-        marginRight: '10px'
+        marginRight: '10px',
+        
   };
   const scrollBoxStyle = {
         height: "200px",
@@ -116,6 +134,10 @@ function Home() {
         display: 'flex',
         justifyContent: 'center',
         // alignItems: 'center'
+  };
+  const jjk = {
+    overflowY: 'scroll',
+    height: '65vh',
   };
       
       
@@ -148,10 +170,10 @@ function Home() {
             <div className="row">
               <div className="col-md-4 col-md-push-8">
                 <div style={{padding: '10px', height: 'auto',marginTop: '60px' }}>
-                  <div className='jobs row'>
+                  <div className='jobs row' style={jjk}>
                     {jobs.map((data,index)=>(
-                        <button onClick={()=>getdata_from_search(data.jobposition,data.company.company_name,"")}>
-                        <div key={index} className="col-md-12 mb-4 bg-white" style={{border: '1px solid #ccc', borderRadius: '10px', padding: '10px', marginBottom: '20px'}}>
+                        <button onClick={() => getdata_from_search(data.id)} style={{ background: 'white',border: '1px solid #ccc', borderRadius: '10px', padding: '10px', marginBottom: '20px' }}>
+                        <div key={index} className="col-md-12 mb-4 bg-white" >
                           <p>
                             <strong style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{data.jobposition}</strong>
                           </p>
@@ -168,28 +190,34 @@ function Home() {
               </div>
           </div>
           <div className="col-md-8 col-md-pull-4">
-            <div style={{ display: 'flex', marginBottom: '10px' }}>
-              <button type="button" style={buttonStyle}>เพิ่มบริษัท</button>
+            <button type="button" style={buttonStyle}>เพิ่มบริษัท</button>
               <button type="button" style={buttonStyle}>เพิ่มงาน</button>
+              <button type="button" onClick={deleteJob} style={buttonStyle}>ลบงาน</button>
+            <div  style={{ display: 'flex', marginBottom: '10px' ,marginRight: '10px',}}>
+              
             </div>
+            
             <div style={{ backgroundColor: 'white', padding: '10px', height: '1000px', overflowY: 'scroll' }}>
-              {alldata_search.map((data,index)=>(
-                <div className='test_searchDATA' key={index} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{data.jobposition}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '20px', fontWeight: 'bold', color: 'red'}}>{"company : "+data.company.company_name}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"email : " +data.company.email}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"location : "+data.company.location}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"marketcap : "+data.company.marketcap}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"telephone : "+data.company.telephone}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"website : "+data.company.website}</p>
-                  <p>-- Info ตรงนี้ลบออกใส่ไว้ไม่ให้งง --</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"education : "+data.education}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"gpax : "+data.gpax}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"jobrequirement : "+data.jobrequirement}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"salary : "+data.salary}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"toeic : "+data.toeic}</p>
+            <h1></h1>
+            {!alldata_search.jobposition ?
+              <h2>Welcome to JobsTL</h2>
+              :
+              <div className='test_searchDATA' style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{alldata_search.jobposition}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '20px', fontWeight: 'bold', color: 'red'}}>{"company : "+alldata_search.company.company_name}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"email : " +alldata_search.company.email}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"location : "+alldata_search.company.location}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"marketcap : "+alldata_search.company.marketcap}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"telephone : "+alldata_search.company.telephone}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"website : "+alldata_search.company.website}</p>
+                    <p>-- Info ตรงนี้ลบออกใส่ไว้ไม่ให้งง --</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"education : "+alldata_search.education}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"gpax : "+alldata_search.gpax}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"jobrequirement : "+alldata_search.jobrequirement}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"salary : "+alldata_search.salary}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"toeic : "+alldata_search.toeic}</p>
                 </div>
-              ))}
+              }
             </div>
           </div>
 
