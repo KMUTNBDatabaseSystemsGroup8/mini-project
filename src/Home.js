@@ -150,17 +150,12 @@ function Home() {
             <div className="row">
               <div className="col-md-4 col-md-push-8">
                 <div style={{ backgroundColor: 'white', padding: '10px', height: 'auto',marginTop: '60px' }}>
-                  <div className='job'>
+                  <div className='jobs'>
                     {jobs.map((data,index)=>(
-                      <div className='row_jobsposition' key={index}>
+                      <div className='row_jobs' key={index}>
                         <p>{data.jobposition}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className='company'>
-                    {jobs.map((data,index)=>(
-                      <div className='row_company' key={index}>
                         <p>{data.company.company_name}</p>
+                        <p>-------------------</p>
                       </div>
                     ))}
                   </div>
@@ -171,7 +166,7 @@ function Home() {
                   <button type="button" style={buttonStyle}>เพิ่มบริษัท</button>
                   <button type="button" style={buttonStyle}>เพิ่มงาน</button>
                 </div>
-                <div style={{ backgroundColor: 'white', padding: '10px', height: '100px', overflowY: 'scroll' }}>
+                <div style={{ backgroundColor: 'white', padding: '10px', height: '1000px', overflowY: 'scroll' }}>
                   {alldata_search.map((data,index)=>(
                     <div className='test_searchDATA' key={index}>
                       <p>{data.jobposition}</p>
@@ -186,6 +181,7 @@ function Home() {
           </div>
         </div>
       </div>
+      
       
     )
 }
