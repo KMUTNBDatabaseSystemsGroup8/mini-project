@@ -18,7 +18,7 @@ function Home() {
   }
   
   useEffect(()=>{
-    fetchData_jobs(state_for_search.job_postings,state_for_search.company,state_for_search.location)
+    fetchData_jobs(state_for_search.job_postings,state_for_search.company,state_for_search.location);
   },[])
 
   //////////////////////// เอาไว้ลบข้อมูล ////////////////////////
@@ -194,21 +194,26 @@ function Home() {
             </div>
             
             <div style={{ backgroundColor: 'white', padding: '10px', height: '1000px', overflowY: 'scroll' }}>
-            <div className='test_searchDATA' style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{alldata_search.jobposition}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '20px', fontWeight: 'bold', color: 'red'}}>{"company : "+alldata_search.company.company_name}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"email : " +alldata_search.company.email}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"location : "+alldata_search.company.location}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"marketcap : "+alldata_search.company.marketcap}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"telephone : "+alldata_search.company.telephone}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"website : "+alldata_search.company.website}</p>
-                  <p>-- Info ตรงนี้ลบออกใส่ไว้ไม่ให้งง --</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"education : "+alldata_search.education}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"gpax : "+alldata_search.gpax}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"jobrequirement : "+alldata_search.jobrequirement}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"salary : "+alldata_search.salary}</p>
-                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"toeic : "+alldata_search.toeic}</p>
+            <h1></h1>
+            {!alldata_search.jobposition ?
+              <p></p>
+              :
+              <div className='test_searchDATA' style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{alldata_search.jobposition}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '20px', fontWeight: 'bold', color: 'red'}}>{"company : "+alldata_search.company.company_name}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"email : " +alldata_search.company.email}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"location : "+alldata_search.company.location}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"marketcap : "+alldata_search.company.marketcap}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"telephone : "+alldata_search.company.telephone}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"website : "+alldata_search.company.website}</p>
+                    <p>-- Info ตรงนี้ลบออกใส่ไว้ไม่ให้งง --</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"education : "+alldata_search.education}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"gpax : "+alldata_search.gpax}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"jobrequirement : "+alldata_search.jobrequirement}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"salary : "+alldata_search.salary}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"toeic : "+alldata_search.toeic}</p>
                 </div>
+              }
             </div>
           </div>
 
