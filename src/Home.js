@@ -114,7 +114,7 @@ function Home() {
   const bgStyle = {
         fontFamily: 'LINESeedSansTH_A_Rg',
         backgroundColor: '#f7f8fb',
-        height: '100vh', // fill the screen vertically
+        height: 'auto', 
         display: 'flex',
         justifyContent: 'center',
         // alignItems: 'center'
@@ -149,34 +149,34 @@ function Home() {
           <div className="container">
             <div className="row">
               <div className="col-md-4 col-md-push-8">
-                <div style={{ backgroundColor: 'white', padding: '10px', height: 'auto',marginTop: '60px' }}>
-                  <div className='jobs'>
+                <div style={{padding: '10px', height: 'auto',marginTop: '60px' }}>
+                  <div className='jobs row'>
                     {jobs.map((data,index)=>(
-                      <div className='row_jobs' key={index}>
-                        <p>{data.jobposition}</p>
-                        <p>{data.company.company_name}</p>
-                        <p>-------------------</p>
-                      </div>
-                    ))}
+                    <div key={index} className="col-md-12 mb-4 bg-white" style={{border: '1px solid #ccc', borderRadius: '10px', padding: '10px', marginBottom: '20px'}}>
+                    <p><strong style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{data.jobposition}</strong></p>
+                    <p style={{fontSize: '20px',fontWeight: 'bold', color: '#3b3b3b'}}>{data.company.company_name}</p>
                   </div>
-                </div>
+                ))}
               </div>
-              <div className="col-md-8 col-md-pull-4">
-                <div style={{ display: 'flex', marginBottom: '10px' }}>
-                  <button type="button" style={buttonStyle}>เพิ่มบริษัท</button>
-                  <button type="button" style={buttonStyle}>เพิ่มงาน</button>
+            </div>
+          </div>
+          <div className="col-md-8 col-md-pull-4">
+            <div style={{ display: 'flex', marginBottom: '10px' }}>
+              <button type="button" style={buttonStyle}>เพิ่มบริษัท</button>
+              <button type="button" style={buttonStyle}>เพิ่มงาน</button>
+            </div>
+            <div style={{ backgroundColor: 'white', padding: '10px', height: '600px', overflowY: 'scroll' }}>
+              {alldata_search.map((data,index)=>(
+                <div className='test_searchDATA' key={index} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
+                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{data.jobposition}</p>
+                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '20px', fontWeight: 'bold', color: 'red'}}>{data.company.company_name}</p>
+                  <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{data.company.location}</p>
                 </div>
-                <div style={{ backgroundColor: 'white', padding: '10px', height: '1000px', overflowY: 'scroll' }}>
-                  {alldata_search.map((data,index)=>(
-                    <div className='test_searchDATA' key={index}>
-                      <p>{data.jobposition}</p>
-                      <p>{data.company.company_name}</p>
-                      <p>{data.company.location}</p>
-                      <p>-------------</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              ))}
+            </div>
+          </div>
+
+
             </div>
           </div>
         </div>
