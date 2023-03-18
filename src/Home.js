@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import {useState,useEffect} from "react";
 
 function Home() {
@@ -23,13 +23,17 @@ function Home() {
 
   //////////////////////// เอาไว้ลบข้อมูล ////////////////////////
 
-  const deleteJob =(position,company,location)=>{
+  const deleteJob =()=>{
+
+    
     axios
-    .get(`http://localhost:8008/api/get/search/jobs?position=${position}&company=${company}&location=${location}`)
+    .delete(`http://localhost:8008/api/delete/job/${alldata_search.id}`)
     .then(resp=>{
-      //console.log(resp.data)
+      fetchData_jobs(state_for_search.job_postings,state_for_search.company,state_for_search.location);
+      setalldata_search([]);
     })
     .catch(err=>alert(err));
+    
   }
 
  ///////////////////////// for search buttons //////////////////////////////
@@ -188,7 +192,7 @@ function Home() {
           <div className="col-md-8 col-md-pull-4">
             <button type="button" style={buttonStyle}>เพิ่มบริษัท</button>
               <button type="button" style={buttonStyle}>เพิ่มงาน</button>
-              <button type="button" style={buttonStyle}>ลบงาน</button>
+              <button type="button" onClick={deleteJob} style={buttonStyle}>ลบงาน</button>
             <div  style={{ display: 'flex', marginBottom: '10px' ,marginRight: '10px',}}>
               
             </div>
@@ -196,7 +200,7 @@ function Home() {
             <div style={{ backgroundColor: 'white', padding: '10px', height: '1000px', overflowY: 'scroll' }}>
             <h1></h1>
             {!alldata_search.jobposition ?
-              <p></p>
+              <h2>Welcome to JobsTL</h2>
               :
               <div className='test_searchDATA' style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
                     <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{alldata_search.jobposition}</p>
