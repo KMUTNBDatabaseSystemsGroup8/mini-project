@@ -62,7 +62,7 @@ function Home() {
     axios
     .get(`http://localhost:8008/api/get/job/${id}`)
     .then(resp=>{
-      console.log(resp.data);
+      //console.log(resp.data);
       setalldata_search(resp.data);
     })
     .catch(err=>alert(err));

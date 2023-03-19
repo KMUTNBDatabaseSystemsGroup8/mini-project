@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 
 const PopupAddComp = ({show,handleClose}) => {
-  console.log(show)
+  //console.log(show)
 
     return (
         <Modal show={show === 'addComp'} onHide={handleClose}>
