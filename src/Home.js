@@ -3,6 +3,7 @@ import axios, { all } from 'axios';
 import {useState,useEffect} from "react";
 import PopupAddComp from './Popup_addComp';
 import PopupAddJob from './Popup_addJob';
+import job from './newspaper.png';
 
 function Home() {
 
@@ -206,25 +207,26 @@ function Home() {
               
             </div>
             
-            <div style={{ backgroundColor: 'white', padding: '10px', height: '1000px', overflowY: 'scroll' }}>
+            <div style={{ backgroundColor: 'white', padding: '10px', height: 'auto', overflowY: 'scroll' }}>
             <h1></h1>
-            {!alldata_search.jobposition ?
-              <h2>Welcome to JobsTL</h2>
-              :
-              <div className='test_searchDATA' style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#f77100'}}>{alldata_search.jobposition}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '20px', fontWeight: 'bold', color: 'red'}}>{"company : "+alldata_search.company.company_name}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"email : " +alldata_search.company.email}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"location : "+alldata_search.company.location}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"marketcap : "+alldata_search.company.marketcap}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"telephone : "+alldata_search.company.telephone}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"website : "+alldata_search.company.website}</p>
-                    <p>-- Info ตรงนี้ลบออกใส่ไว้ไม่ให้งง --</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"education : "+alldata_search.education}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"gpax : "+alldata_search.gpax}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"jobrequirement : "+alldata_search.jobrequirement}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"salary : "+alldata_search.salary}</p>
-                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b'}}>{"toeic : "+alldata_search.toeic}</p>
+            {!alldata_search.jobposition ?(<>
+              <h2 style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '60px', fontWeight: 'bold', color: '#3b3b3b'}}>Welcome to JobsTL</h2>
+              <img src={job} width="500" height="600" style={{ maxWidth: '100%', height: 'auto' }}></img>
+              </>):
+              <div className='test_searchDATA' style={{ border: '1px solid #ccc', padding: '10px' }}>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '40px', fontWeight: 'bold', color: '#A52A2A'}}>{alldata_search.jobposition}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '30px', fontWeight: 'bold', color: '#A52A2A'}}>{"company : "+alldata_search.company.company_name}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"email : " +alldata_search.company.email}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"location : "+alldata_search.company.location}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"marketcap : "+alldata_search.company.marketcap}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"telephone : "+alldata_search.company.telephone}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"website : "+alldata_search.company.website}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '40px', fontWeight: 'bold', color: '#A52A2A'}}>Job qualifications</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"education : "+alldata_search.education}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"gpax : "+alldata_search.gpax}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"jobrequirement : "+alldata_search.jobrequirement}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"salary : "+alldata_search.salary}</p>
+                    <p style={{fontFamily: 'LINESeedSansTH_Bd', fontSize: '18px', fontWeight: 'bold', color: '#3b3b3b', textAlign: 'left'}}>{"toeic : "+alldata_search.toeic}</p>
                 </div>
               }
             </div>
