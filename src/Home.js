@@ -3,6 +3,8 @@ import axios, { all } from 'axios';
 import {useState,useEffect} from "react";
 import PopupAddComp from './Popup_addComp';
 import PopupAddJob from './Popup_addJob';
+import PopupEditJob from './Popup_editJob';
+import PopupDelComp from './Popup_delComp';
 import job from './newspaper.png';
 
 
