@@ -86,14 +86,18 @@ const PopupEditJob = ({show,handleClose}) => {
       var dummy_Availablecount = parseInt(availablecount)
       
       console.log({jobposition,education,toeic:dummy_TOEIC,gpax:dummy_GPAX,jobrequirement,salary,company_id:dummy_CompanyID,availablecount:dummy_Availablecount})
-      /*
+      
       axios
-      .post((localenv.apiHostname+"/api/new/job"),{jobposition,education,toeic:dummy_TOEIC,gpax:dummy_GPAX,jobrequirement,salary,company_id:dummy_CompanyID,availablecount:dummy_Availablecount})
-      .then(console.log("complete"))
+      .put((localenv.apiHostname+"/api/update/job"),{id:window.id,jobposition,education,toeic:dummy_TOEIC,gpax:dummy_GPAX,jobrequirement,salary,company_id:dummy_CompanyID,availablecount:dummy_Availablecount})
+      .then(() => {
+        console.log("complete");
+      window.location.reload(false);
+      }
+      )
       .catch(err => {
         console.log(err.response.data.error +" "+ err.response.data.message)
         })
-        */
+        
     }
 
     const list_company = () => {
