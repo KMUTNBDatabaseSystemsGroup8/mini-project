@@ -202,7 +202,6 @@ function Home() {
             <button type="button" style={buttonStyle} onClick={() => handleShow('addJob')}>เพิ่มงาน</button>
             <PopupAddJob show={show} handleClose={handleClose}/>
             <button type="button" onClick={deleteJob} style={buttonStyle}>ลบงาน</button>
-
             <div  style={{ display: 'flex', marginBottom: '10px' ,marginRight: '10px',}}>
               
             </div>
