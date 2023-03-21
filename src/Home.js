@@ -3,7 +3,6 @@ import axios, { all } from 'axios';
 import {useState,useEffect} from "react";
 import PopupAddComp from './Popup_addComp';
 import PopupAddJob from './Popup_addJob';
-import PopupEditJob from './Popup_editJob';
 import job from './newspaper.png';
 
 
@@ -208,7 +207,8 @@ function Home() {
             <button type="button" style={buttonStyle} onClick={() => handleShow('editJob')}>แก้ไขงาน</button>
             <PopupEditJob show={show} handleClose={handleClose}/>
             <button type="button" onClick={deleteJob} style={buttonStyle}>ลบงาน</button>
-
+            <button type="button" style={buttonStyle} onClick={() => handleShow('delComp')}>ลบบริษัท</button>
+            <PopupDelComp show={show} handleClose={handleClose}/>
             <div  style={{ display: 'flex', marginBottom: '10px' ,marginRight: '10px',}}>
               
             </div>
