@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import axios from 'axios';
 import { localenv } from './env.js';
 
@@ -10,7 +10,21 @@ import { localenv } from './env.js';
 
 const PopupAddJob = ({show,handleClose}) => {
 
-    ///////////////////////// for search buttons //////////////////////////////
+    const[company_fetch,setfetch] = useState([]) // ข้อมูลบริษัท(id,name) เก็บอยู่ใน company_fetch เป็น array
+
+    const fetchData_company =()=>{
+      axios
+      .get(localenv.apiHostname+"/api/get/companies")
+      .then(resp=>{
+        setfetch(resp.data) 
+        console.log("from fetchData_company : ",resp.data)
+      })
+      .catch(err=>alert(err));
+    }
+    useEffect(()=>{
+      fetchData_company();
+    },[])
+
     const [state,setState] = useState({
       jobposition:"",
       education:"",
@@ -32,12 +46,17 @@ const PopupAddJob = ({show,handleClose}) => {
       }
       else{
         setState({...state,[name]:event.target.value})
-          axios
-        .get(localenv.apiHostname+`/api/get/search/jobs?position=${""}&company=${company}&location=${""}`)
-        .then(resp => {
-          setState({...state,company_id:`${resp.data[0].company_id}`});
-          //console.log(company_id)
-        })
+        console.log(name,"=",event.target.value)
+        let i = 0;
+        while( i < company_fetch.length){
+          if(String(event.target.value) == String(company_fetch[i].company_name)){
+            setState({...state,company_id:`${company_fetch[i].id}`})
+            //console.log("Match : "+company_id)
+            break;
+          }
+          //console.log("dont match : " + i)
+          i++;
+        }
       }     
     }
     //-------------------------------------------------------------------------

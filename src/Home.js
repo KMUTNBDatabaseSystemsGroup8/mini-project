@@ -9,7 +9,7 @@ function Home() {
 
   //////////////////////// เอาไว้ดึงข้อมูลไปใส่ช่องทางซ้าย ////////////////////////
   const[jobs,setjobs] = useState([])
-  var selectedJobID = -1;
+
   const fetchData_jobs =(position,company,location)=>{
     axios
     .get(`http://localhost:8008/api/get/search/jobs?position=${position}&company=${company}&location=${location}`)
