@@ -3,7 +3,9 @@ import axios, { all } from 'axios';
 import {useState,useEffect} from "react";
 import PopupAddComp from './Popup_addComp';
 import PopupAddJob from './Popup_addJob';
+import PopupEditJob from './Popup_editJob';
 import job from './newspaper.png';
+
 
 function Home() {
 
@@ -65,6 +67,8 @@ function Home() {
     .then(resp=>{
       //console.log(resp.data);
       setalldata_search(resp.data);
+      window.id = id;
+      window.jobdetial = resp.data;
     })
     .catch(err=>alert(err));
   }
@@ -201,6 +205,8 @@ function Home() {
             <PopupAddComp show={show} handleClose={handleClose}/>
             <button type="button" style={buttonStyle} onClick={() => handleShow('addJob')}>เพิ่มงาน</button>
             <PopupAddJob show={show} handleClose={handleClose}/>
+            <button type="button" style={buttonStyle} onClick={() => handleShow('editJob')}>แก้ไขงาน</button>
+            <PopupEditJob show={show} handleClose={handleClose}/>
             <button type="button" onClick={deleteJob} style={buttonStyle}>ลบงาน</button>
 
             <div  style={{ display: 'flex', marginBottom: '10px' ,marginRight: '10px',}}>
