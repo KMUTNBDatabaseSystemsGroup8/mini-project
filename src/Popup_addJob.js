@@ -17,7 +17,7 @@ const PopupAddJob = ({show,handleClose}) => {
       .get(localenv.apiHostname+"/api/get/companies")
       .then(resp=>{
         setfetch(resp.data) 
-        console.log("from fetchData_company : ",resp.data)
+        //console.log("from fetchData_company : ",resp.data)
       })
       .catch(err=>alert(err));
     }
@@ -43,21 +43,7 @@ const PopupAddJob = ({show,handleClose}) => {
       if (name != "company"){
         //console.log(name,"=",event.target.value)
         setState({...state,[name]:event.target.value})
-      }
-      else{
-        setState({...state,[name]:event.target.value})
-        console.log(name,"=",event.target.value)
-        let i = 0;
-        while( i < company_fetch.length){
-          if(String(event.target.value) == String(company_fetch[i].company_name)){
-            setState({...state,company_id:`${company_fetch[i].id}`})
-            //console.log("Match : "+company_id)
-            break;
-          }
-          //console.log("dont match : " + i)
-          i++;
-        }
-      }     
+      } 
     }
     //-------------------------------------------------------------------------
     const send_addjob = () => {
@@ -74,6 +60,20 @@ const PopupAddJob = ({show,handleClose}) => {
         })
     }
 
+    const list_company = () => {
+      let arr = [];
+  
+      for(const data of company_fetch){
+        arr.push(<option value={data.id}>{data.company_name}</option>)
+      }
+      return arr ;
+    }
+
+    const handleChange = event => {
+      //console.log(event.target.value);
+      setState({...state,company_id:event.target.value});
+    };
+
     return (
         <Modal show={show === 'addJob'} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -84,7 +84,11 @@ const PopupAddJob = ({show,handleClose}) => {
             <Form.Label>Position</Form.Label>
             <Form.Control type="text" onChange={inputValue("jobposition")} placeholder="Job Position" autoFocus/>
             <Form.Label>Company</Form.Label>
-            <Form.Control type="text" onChange={inputValue("company")} placeholder="Company" autoFocus/>
+            {/* <Form.Control type="text" onChange={inputValue("company")} placeholder="Company" autoFocus/> */}
+            <Form.Select aria-label="Default select example" onChange={handleChange}>
+              <option hidden value>Company</option>
+              {list_company()}
+            </Form.Select>
             <Form.Label>Education</Form.Label>
             <Form.Control type="text" onChange={inputValue("education")} placeholder="Education" autoFocus />
             <Form.Label>Toeic</Form.Label>
@@ -103,7 +107,7 @@ const PopupAddJob = ({show,handleClose}) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>Close</Button>
-          <Button variant="primary" onClick={send_addjob}>Save</Button>
+          <Button variant="primary" onClick={()=>{send_addjob();handleClose();}}>Save</Button>
         </Modal.Footer>
       </Modal>
     );
