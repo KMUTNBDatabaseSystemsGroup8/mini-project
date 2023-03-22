@@ -6,7 +6,7 @@ import PopupAddJob from './Popup_addJob';
 import PopupEditJob from './Popup_editJob';
 import PopupDelComp from './Popup_delComp';
 import job from './newspaper.png';
-
+import { localenv } from './env.js';
 
 
 
@@ -17,7 +17,7 @@ function Home() {
 
   const fetchData_jobs =(position,company,location)=>{
     axios
-    .get(`http://localhost:8008/api/get/search/jobs?position=${position}&company=${company}&location=${location}`)
+    .get(localenv.apiHostname+`/api/get/search/jobs?position=${position}&company=${company}&location=${location}`)
     .then(resp=>{
       setjobs(resp.data) 
       //console.log(resp.data)
@@ -35,7 +35,7 @@ function Home() {
 
     
     axios
-    .delete(`http://localhost:8008/api/delete/job/${alldata_search.id}`)
+    .delete(localenv.apiHostname+`/api/delete/job/${alldata_search.id}`)
     .then(resp=>{
       fetchData_jobs(state_for_search.job_postings,state_for_search.company,state_for_search.location);
       setalldata_search([]);
@@ -66,7 +66,7 @@ function Home() {
   const getdata_from_search =(id)=>{
     //console.log(position,company,location)
     axios
-    .get(`http://localhost:8008/api/get/job/${id}`)
+    .get(localenv.apiHostname+`/api/get/job/${id}`)
     .then(resp=>{
       //console.log(resp.data);
       setalldata_search(resp.data);
