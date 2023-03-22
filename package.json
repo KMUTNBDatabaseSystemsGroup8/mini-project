@@ -28,7 +28,8 @@
     "eject": "react-scripts eject",
     "serve": "node index -serve",
     "api": "node index",
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "prisma::generate": "prisma generate"
   },
   "eslintConfig": {
     "extends": [
