@@ -22,7 +22,7 @@ exports.updateJob = async (req, res) => {
         res.status(444);
         res.json({
             error: true,
-            message: "Bad Request"
+            message: "Bad Request" + req.body
         });
     }
 };

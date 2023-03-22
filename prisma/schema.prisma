@@ -9,11 +9,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // provider = "mongodb"
+  //provider = "mongodb"
   url      = env("POSTGRES_URL")
 }
 
 // model to postgresql
+
 model companies {
   id            Int @id @default(autoincrement())
   company_name  String
@@ -49,7 +50,7 @@ model jobs {
 //   telephone     String
 //   jobs          jobs[]
 // }
-
+//
 // model jobs {
 //   id             String  @id @default(auto()) @map("_id") @db.ObjectId
 //   jobposition     String
