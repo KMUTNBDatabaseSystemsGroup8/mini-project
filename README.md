@@ -5,10 +5,17 @@
 ![22-215542](https://user-images.githubusercontent.com/72431095/226975615-12fca1e5-7cc3-4b42-b8b6-854594b76371.png)
 
 ## ขั้นตอนการเริ่มใช้งาน
-### `npm run start`
+```bash
+ npm install i
+ ```
+ 
+เพื่อทำการติดตั้ง package ต่างๆ ที่จำเป็นต้องใช้งาน
 
-Runs the app in the user mode.\
-Open [http://localhost:8008](http://localhost:8008) to view it in your browser.
+```bash
+npm run start
+```
+เพื่อเริ่มการใช้งานในสถานะ **`user mode`** \
+เปิด [http://localhost:8008](http://localhost:8008) เพื่อเข้าไปดูที่ browser ของคุณ
 
 > **Note:** การใช้งานใน **development mode**  สามารถใช้คำสั่ง `npm run api` สำหรับ **front-end** และ `npm run dev` สำหรับ **back-end**
 
