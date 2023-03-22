@@ -159,6 +159,8 @@ function Home() {
       <div style={searchBarStyle}>
   <div className="container">
     <div className="row">
+      <h1></h1>
+      <h2>ค้นหางาน</h2>
       <div className="col-md-4">
         <input type="text" onChange={inputValue_forsearch("job_postings")} placeholder="ตำแหน่งงาน" style={searchBoxStyle} />
       </div>
