@@ -14,7 +14,7 @@ exports.updateJob = async (req, res) => {
                 availablecount : parseInt(req.body.availablecount),
 			    jobrequirement :  req.body.jobrequirement,
 			    salary : req.body.salary,
-			    company_id : parseInt(req.body.company_id),
+			    company_id : req.body.company_id,
              },
             })
         res.json(job)
