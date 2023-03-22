@@ -8,6 +8,8 @@ import PopupDelComp from './Popup_delComp';
 import job from './newspaper.png';
 
 
+
+
 function Home() {
 
   //////////////////////// เอาไว้ดึงข้อมูลไปใส่ช่องทางซ้าย ////////////////////////
@@ -202,14 +204,14 @@ function Home() {
               </div>
           </div>
           <div className="col-md-8 col-md-pull-4">
-            <button type="button" style={buttonStyle} onClick={() => handleShow('addComp')}>เพิ่มบริษัท</button>
+            <button type="button" style={buttonStyle} onClick={() => handleShow('addComp')}><svg xmlns="http://www.w3.org/2000/svg" fill="#fff" height="24" viewBox="0 96 960 960" width="32"><path d="M80 936V216h390v165h410v555H80Zm60-60h105V771H140v105Zm0-165h105V606H140v105Zm0-165h105V441H140v105Zm0-165h105V276H140v105Zm165 495h105V771H305v105Zm0-165h105V606H305v105Zm0-165h105V441H305v105Zm0-165h105V276H305v105Zm165 495h350V441H470v105h80v60h-80v105h80v60h-80v105Zm185-270v-60h60v60h-60Zm0 165v-60h60v60h-60Z"/></svg>เพิ่มบริษัท</button>
             <PopupAddComp show={show} handleClose={handleClose}/>
-            <button type="button" style={buttonStyle} onClick={() => handleShow('addJob')}>เพิ่มงาน</button>
+            <button type="button" style={buttonStyle} onClick={() => handleShow('addJob')}><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" fill="#fff" width="24"><path d="M140 936q-24 0-42-18t-18-42V396q0-24 18-42t42-18h180V236q0-24 18-42t42-18h200q24 0 42 18t18 42v100h180q24 0 42 18t18 42v480q0 24-18 42t-42 18H140Zm0-60h680V396H140v480Zm240-540h200V236H380v100ZM140 876V396v480Z"/></svg> เพิ่มงาน</button>
             <PopupAddJob show={show} handleClose={handleClose}/>
-            <button type="button" style={buttonStyle} onClick={() => handleShow('editJob')}>แก้ไขงาน</button>
+            <button type="button" style={buttonStyle} onClick={() => handleShow('editJob')}><svg xmlns="http://www.w3.org/2000/svg" height="24" fill="#fff" viewBox="0 96 960 960" width="24"><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg> แก้ไขงาน</button>
             <PopupEditJob show={show} handleClose={handleClose}/>
-            <button type="button" onClick={deleteJob} style={buttonStyle}>ลบงาน</button>
-            <button type="button" style={buttonStyle} onClick={() => handleShow('delComp')}>ลบบริษัท</button>
+            <button type="button" onClick={deleteJob} style={buttonStyle}><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24" fill="#fff"><path d="M261 936q-24.75 0-42.375-17.625T201 876V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438V306ZM367 790h60V391h-60v399Zm166 0h60V391h-60v399ZM261 306v570-570Z"/></svg> ลบงาน </button>
+            <button type="button" style={buttonStyle} onClick={() => handleShow('delComp')}><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24" fill="#fff"><path d="M261 936q-24.75 0-42.375-17.625T201 876V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438V306ZM367 790h60V391h-60v399Zm166 0h60V391h-60v399ZM261 306v570-570Z"/></svg>  ลบบริษัท</button>
             <PopupDelComp show={show} handleClose={handleClose}/>
             <div  style={{ display: 'flex', marginBottom: '10px' ,marginRight: '10px',}}>
               

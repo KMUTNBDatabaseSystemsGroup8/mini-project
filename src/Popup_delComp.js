@@ -71,7 +71,7 @@ const PopupDelComp = ({show,handleClose}) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>Close</Button>
-          <Button variant="primary" onClick={()=>{send_DeleteCompany(); handleClose();}}>Delete</Button>
+          <Button variant="" onClick={()=>{send_DeleteCompany(); handleClose();}}>Delete</Button>
         </Modal.Footer>
       </Modal>
     );

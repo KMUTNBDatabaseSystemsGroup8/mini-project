@@ -107,7 +107,7 @@ const PopupAddJob = ({show,handleClose}) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>Close</Button>
-          <Button variant="primary" onClick={()=>{send_addjob();handleClose();}}>Save</Button>
+          <Button variant="" onClick={()=>{send_addjob();handleClose();}}>Save</Button>
         </Modal.Footer>
       </Modal>
     );
