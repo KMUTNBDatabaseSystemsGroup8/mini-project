@@ -49,7 +49,7 @@ const PopupAddJob = ({show,handleClose}) => {
     const send_addjob = () => {
       var dummy_TOEIC = parseInt(toeic)
       var dummy_GPAX = parseFloat(gpax)
-      var dummy_CompanyID = parseInt(company_id)
+      var dummy_CompanyID = company_id
       var dummy_Availablecount = parseInt(availablecount)
       console.log({jobposition,education,toeic:dummy_TOEIC,gpax:dummy_GPAX,jobrequirement,salary,company_id:dummy_CompanyID,availablecount:dummy_Availablecount})
       axios

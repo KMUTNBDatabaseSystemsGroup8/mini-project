@@ -31,7 +31,7 @@ const PopupDelComp = ({show,handleClose}) => {
   const {company_id} = state
 
   const send_DeleteCompany = () => {
-    var dummy_CompanyID = parseInt(company_id)
+    var dummy_CompanyID = company_id
     console.log({id:dummy_CompanyID})
     axios
     .delete(`${localenv.apiHostname}/api/delete/company/${dummy_CompanyID}"`)
