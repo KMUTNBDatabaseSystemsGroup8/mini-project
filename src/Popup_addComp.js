@@ -30,8 +30,9 @@ const PopupAddComp = ({show,handleClose}) => {
     console.log({company_name,location,email,marketcap,website,telephone})
     axios
     .post((localenv.apiHostname+"/api/new/company"),{company_name,location,email,marketcap,website,telephone})
-    .then(console.log("complete"))
+    .then(window.location.reload(false))
     .catch(err => {
+      alert('Information Not Correct Check Company Information and Try Again');
       console.log(err.response.data.error +" "+ err.response.data.message)
       })
   }

@@ -54,8 +54,9 @@ const PopupAddJob = ({show,handleClose}) => {
       console.log({jobposition,education,toeic:dummy_TOEIC,gpax:dummy_GPAX,jobrequirement,salary,company_id:dummy_CompanyID,availablecount:dummy_Availablecount})
       axios
       .post((localenv.apiHostname+"/api/new/job"),{jobposition,education,toeic:dummy_TOEIC,gpax:dummy_GPAX,jobrequirement,salary,company_id:dummy_CompanyID,availablecount:dummy_Availablecount})
-      .then(console.log("complete"))
+      .then(window.location.reload(false))
       .catch(err => {
+        alert('Information Not Correct Check Job Information and Try Again');
         console.log(err.response.data.error +" "+ err.response.data.message)
         })
     }

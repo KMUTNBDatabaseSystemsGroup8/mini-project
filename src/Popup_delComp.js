@@ -35,8 +35,9 @@ const PopupDelComp = ({show,handleClose}) => {
     console.log({id:dummy_CompanyID})
     axios
     .delete(`${localenv.apiHostname}/api/delete/company/${dummy_CompanyID}"`)
-    .then(console.log("complete"))
+    .then(window.location.reload(false))
     .catch(err => {
+      alert('Please Select Company to Delete')
       console.log(err.response.data.error +" "+ err.response.data.message)
       })
   }

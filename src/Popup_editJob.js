@@ -42,6 +42,10 @@ const PopupEditJob = ({show,handleClose}) => {
     
     const getdata_from_search =()=>{
       //console.log(position,company,location)
+      if (window.id == null) {
+        alert('Please Select Job Before Edit');
+        window.location.reload(false);
+      }
      console.log(window.jobdetial);
      
      console.log("Set State");
@@ -95,6 +99,7 @@ const PopupEditJob = ({show,handleClose}) => {
       }
       )
       .catch(err => {
+        alert('cannot edit check information');
         console.log(err.response.data.error +" "+ err.response.data.message)
         })
         
