@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# JobsTL 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+เป็นเว็บไซต์ที่สร้างขึ้นมาเพื่อ เป็นตัวอย่างในการออกแบบและสร้างเว็บไซต์ ที่ใช้สำหรับการค้นหาหรือจัดการเกี่ยวกับข้อมูล ของตำแหน่งงานในบริษัทต่างๆ รวมไปถึงการออกแบบ `Database Schema` ซึ่งภายในโปรเจคนี้จะมีการใช้งาน `Database` อยู่สองตัวคือ **MongoDB** และ **Postgresql** เพื่อทำการเปรียบเทียบว่า `Database` ที่เป็นแบบ **relational** กับ **non relational** มีความแตกต่างกันอย่างไร
 
-## Available Scripts
+![22-215542](https://user-images.githubusercontent.com/72431095/226975615-12fca1e5-7cc3-4b42-b8b6-854594b76371.png)
 
-In the project directory, you can run:
+## ขั้นตอนการเริ่มใช้งาน
+### `npm run start`
 
-### `npm start`
+Runs the app in the user mode.\
+Open [http://localhost:8008](http://localhost:8008) to view it in your browser.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> **Note:** การใช้งานใน **development mode**  สามารถใช้คำสั่ง `npm run api` สำหรับ **front-end** และ `npm run dev` สำหรับ **back-end**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Schema & Relation diagrams
 
-### `npm test`
+![Schema](https://user-images.githubusercontent.com/72431095/226987013-c21794f0-87f8-452a-9212-62102af15a27.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## GroupMember
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+สมาชิกของกลุ่มที่ 8 มีดังนี้ :
+|**สมาชิกกลุ่ม**          |**เลขนักศึกษา**     |      
+|----------------------|-------------------|
+|นายปุญญาพัฒน์ มีมา       |6301012620057      |
+|นายธนธรณ์ เหล่าทวีคุณ     |6301012610043      | 
+|นายพีรพล พันธุ์สง่า        |6301012620162      | 
+|นายธนกฤต สลีอ่อน        |6301012630061      | 
+|นายเสฏฐภูมิ ตุลยสุข       |6301012630192      | 
+|นายพงศ์วิสิษฎ์ รัตนศรี      |6401012620064      | 
+|นายเจษฎา ศรีจุลโพธิ์      |6401012620170      |         
+|นางสาวจารวี ตรงศิริวัฒน์    |6401012630035      | 
+|นางสาววรรณนิภา อุบลบาน  |6401012630116      | 
